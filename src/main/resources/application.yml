@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/library_db
+    username: root
+    password: 304304
+
+#  sql:
+#    init:
+#      mode: always
+#      data-locations: classpath:database/data.sql
+
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
