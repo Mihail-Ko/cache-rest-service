@@ -14,3 +14,8 @@ spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
+
+  security:
+    user:
+      name: admin
+      password: testPassword
