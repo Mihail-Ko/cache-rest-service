@@ -1,26 +1,32 @@
 package com.example.cacherestservice.service;
 
-import com.example.cacherestservice.entity.BookEntity;
 import com.example.cacherestservice.model.BookModel;
+import com.example.cacherestservice.entity.BookEntity;
 import com.example.cacherestservice.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
-    @Autowired
-    private BookRepository bookRepository;
+
+    private final BookRepository bookRepository;
 
     public BookEntity addBook(BookEntity book) {
         return bookRepository.save(book);
     }
 
-    public List<BookModel> getAll() {
-        List<BookEntity> entitiesList = (List<BookEntity>) bookRepository.findAll();
-        return entitiesList.stream().map(BookModel::toModel).collect(Collectors.toList());
+    public List<BookModel> getAll(int pageN) {
+        Pageable page = PageRequest.of(pageN - 1,10);
+        return bookRepository.findAll(page)
+                .stream()
+                .map(BookModel::toModel)
+                .collect(Collectors.toList());
     }
 
     public BookModel getOne(Long id) {
@@ -29,7 +35,7 @@ public class BookService {
     }
 
     public Long delete(Long id) {
-        bookRepository.findById(id).get(); // в случаи отсутствия такой записи вызовется NoSuchElementException
+        bookRepository.findById(id).get();
         bookRepository.deleteById(id);
         return id;
     }

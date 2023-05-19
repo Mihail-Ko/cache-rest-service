@@ -20,7 +20,10 @@ public class ReaderService {
 
     public List<ReaderModel> getAll() {
         List<ReaderEntity> entitiesList = (List<ReaderEntity>) readerRepository.findAll();
-        return entitiesList.stream().map(ReaderModel::toModel).collect(Collectors.toList());
+        return entitiesList
+                .stream()
+                .map(ReaderModel::toModel)
+                .collect(Collectors.toList());
     }
 
     public ReaderModel getOne(Long id) {
@@ -29,7 +32,7 @@ public class ReaderService {
     }
 
     public Long delete(Long id) {
-        readerRepository.findById(id).get(); // в случаи отсутствия такой записи вызовется NoSuchElementException
+        readerRepository.findById(id).get();
         readerRepository.deleteById(id);
         return id;
     }
