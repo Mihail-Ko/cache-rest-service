@@ -1,5 +1,6 @@
 package com.example.cacherestservice.service;
 
+import com.example.cacherestservice.mapper.BookMapper;
 import com.example.cacherestservice.model.BookModel;
 import com.example.cacherestservice.entity.BookEntity;
 import com.example.cacherestservice.repository.BookRepository;
@@ -9,13 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final BookMapper mapper;
 
     public BookEntity addBook(BookEntity book) {
         return bookRepository.save(book);
@@ -23,15 +24,15 @@ public class BookService {
 
     public List<BookModel> getAll(int pageN) {
         Pageable page = PageRequest.of(pageN - 1,10);
-        return bookRepository.findAll(page)
-                .stream()
-                .map(BookModel::toModel)
-                .collect(Collectors.toList());
+        return mapper.toModelList(
+                bookRepository.findAll(page)
+                        .getContent()
+        );
     }
 
     public BookModel getOne(Long id) {
         BookEntity book = bookRepository.findById(id).get();
-        return BookModel.toModel(book);
+        return mapper.toModel(book);
     }
 
     public Long delete(Long id) {
@@ -45,6 +46,6 @@ public class BookService {
         book.setName(updatedBook.getName());
         book.setAuthor(updatedBook.getAuthor());
         book.setYear(updatedBook.getYear());
-        return BookModel.toModel(bookRepository.save(book));
+        return mapper.toModel(bookRepository.save(book));
     }
 }
