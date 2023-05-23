@@ -31,3 +31,5 @@ eureka:
 
 server:
   port: 0
+
+delayTime: 3000
