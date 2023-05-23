@@ -5,10 +5,10 @@ spring:
     username: root
     password: 304304
 
-#  sql:
-#    init:
-#      mode: always
-#      data-locations: classpath:database/data.sql
+  #  sql:
+  #    init:
+  #      mode: always
+  #      data-locations: classpath:database/data.sql
 
   jpa:
     defer-datasource-initialization: true

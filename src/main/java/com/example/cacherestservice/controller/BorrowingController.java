@@ -32,7 +32,7 @@ public class BorrowingController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteBorrowing(@PathVariable Long id) {
-        return ResponseEntity.ok("Удалена выдача с id "+borrowingService.delete(id));
+        return ResponseEntity.ok("Удалена выдача с id " + borrowingService.delete(id));
     }
 
     @PutMapping("/{id}")

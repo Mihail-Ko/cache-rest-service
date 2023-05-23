@@ -23,10 +23,10 @@ public class BookService {
     }
 
     public List<BookModel> getAll(int pageN) {
-        Pageable page = PageRequest.of(pageN - 1,10);
+        Pageable page = PageRequest.of(pageN - 1, 10);
         return mapper.toModelList(
-                bookRepository.findAll(page)
-                        .getContent()
+            bookRepository.findAll(page)
+                .getContent()
         );
     }
 

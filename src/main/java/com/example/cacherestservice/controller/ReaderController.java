@@ -31,7 +31,7 @@ public class ReaderController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteReader(@PathVariable Long id) {
-        return ResponseEntity.ok("Удален читатель с id "+readerService.delete(id));
+        return ResponseEntity.ok("Удален читатель с id " + readerService.delete(id));
     }
 
     @PutMapping()

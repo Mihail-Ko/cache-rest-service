@@ -25,9 +25,9 @@ public class BorrowingService {
     public List<BorrowingModel> getAll() {
         List<BorrowingEntity> entitiesList = (List<BorrowingEntity>) borrowingRepository.findAll();
         return entitiesList
-                .stream()
-                .map(BorrowingModel::toModel)
-                .collect(Collectors.toList());
+            .stream()
+            .map(BorrowingModel::toModel)
+            .collect(Collectors.toList());
     }
 
     public BorrowingModel getOne(Long id) {

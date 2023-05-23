@@ -21,9 +21,9 @@ public class ReaderService {
     public List<ReaderModel> getAll() {
         List<ReaderEntity> entitiesList = (List<ReaderEntity>) readerRepository.findAll();
         return entitiesList
-                .stream()
-                .map(ReaderModel::toModel)
-                .collect(Collectors.toList());
+            .stream()
+            .map(ReaderModel::toModel)
+            .collect(Collectors.toList());
     }
 
     public ReaderModel getOne(Long id) {
