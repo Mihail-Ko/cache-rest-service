@@ -17,7 +17,9 @@ public class OpenApiConfiguration {
         Server server = new Server();
         server.setUrl("");
         return new OpenAPI()
-            .servers(List.of(server))
+            .servers(
+                List.of(server)
+            )
             .info(
                 new Info()
                     .title("Api для учёта книг")
