@@ -3,6 +3,7 @@ package com.example.restservice.controller;
 
 import com.example.restservice.model.BorrowingModel;
 import com.example.restservice.service.BorrowingService;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/borrowing")
+@Hidden
 public class BorrowingController {
     @Autowired
     private BorrowingService borrowingService;

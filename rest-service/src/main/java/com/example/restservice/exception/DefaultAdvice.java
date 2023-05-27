@@ -17,7 +17,9 @@ public class DefaultAdvice {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> notFoundHandler(NoSuchElementException noSuchElementExc) {
-        log.info(String.valueOf(noSuchElementExc));
+        log.info(
+            String.valueOf(noSuchElementExc)
+        );
         return ResponseEntity
             .status(HttpStatus.NOT_FOUND)
             .body("Элемент не найден");
@@ -25,7 +27,9 @@ public class DefaultAdvice {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<String> methodNotSupportedHandler(HttpRequestMethodNotSupportedException methodNotSupportedExc) {
-        log.info(String.valueOf(methodNotSupportedExc));
+        log.info(
+            String.valueOf(methodNotSupportedExc)
+        );
         return ResponseEntity
             .status(HttpStatus.METHOD_NOT_ALLOWED)
             .body("Метод не поддерживается");
@@ -33,7 +37,9 @@ public class DefaultAdvice {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<String> messageHandler(HttpMessageNotReadableException notReadableExc) {
-        log.info(String.valueOf(notReadableExc));
+        log.info(
+            String.valueOf(notReadableExc)
+        );
         return ResponseEntity
             .status(HttpStatus.BAD_REQUEST)
             .body("Ошибка в теле запроса");
@@ -41,7 +47,9 @@ public class DefaultAdvice {
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<String> parameterHandler(MissingServletRequestParameterException parameterExc) {
-        log.info(String.valueOf(parameterExc));
+        log.info(
+            String.valueOf(parameterExc)
+        );
         return ResponseEntity
             .status(HttpStatus.BAD_REQUEST)
             .body("Ошибка в параметре запроса");
@@ -49,7 +57,9 @@ public class DefaultAdvice {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> argumentHandler(IllegalArgumentException argumentExc) {
-        log.info(String.valueOf(argumentExc));
+        log.info(
+            String.valueOf(argumentExc)
+        );
         return ResponseEntity
             .status(HttpStatus.BAD_REQUEST)
             .body("Номер страницы должен быть больше 0");

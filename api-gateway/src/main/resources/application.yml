@@ -10,7 +10,11 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-
+      routes:
+        - id: route
+          uri: lb://service
+          predicates:
+            - Path=/book/*,/book,/v3/**,/swagger-ui/*
 eureka:
   client:
     service-url:

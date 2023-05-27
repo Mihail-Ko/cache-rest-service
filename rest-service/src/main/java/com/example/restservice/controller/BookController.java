@@ -1,10 +1,9 @@
 package com.example.restservice.controller;
 
 import com.example.restservice.model.BookModel;
-import com.example.restservice.entity.BookEntity;
 import com.example.restservice.service.BookService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,32 +18,36 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    private String addBook(@RequestBody BookEntity book) {
-        bookService.addBook(book);
-        return "Книга сохранена";
+    @Operation(summary = "Добавить книгу")
+    protected BookModel addBook(@RequestBody BookModel book) {
+        return bookService.addBook(book);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Получить страницу списка книг")
     private List<BookModel> getBooks(@RequestParam int page) {
         return bookService.getAll(page);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    private BookModel getOneBook(@PathVariable Long id) {
+    @Operation(summary = "Получить книгу по id")
+    private BookModel getOneBook(@PathVariable long id) {
         return bookService.getOne(id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    private String deleteBook(@PathVariable Long id) {
+    @Operation(summary = "Удалить книгу по id")
+    protected String deleteBook(@PathVariable long id) {
         return "Удалена книга с id " + bookService.delete(id);
     }
 
     @PutMapping()
     @ResponseStatus(HttpStatus.OK)
-    private BookModel updateBook(@RequestBody BookEntity book) {
+    @Operation(summary = "Обновить книгу")
+    private BookModel updateBook(@RequestBody BookModel book) {
         return bookService.update(book);
     }
 }

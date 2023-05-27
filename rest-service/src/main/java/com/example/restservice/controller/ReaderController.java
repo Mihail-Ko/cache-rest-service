@@ -2,6 +2,7 @@ package com.example.restservice.controller;
 
 import com.example.restservice.entity.ReaderEntity;
 import com.example.restservice.service.ReaderService;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/reader")
+@Hidden
 public class ReaderController {
     @Autowired
     private ReaderService readerService;

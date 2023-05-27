@@ -10,5 +10,7 @@ import java.util.List;
 public interface BookMapper {
     BookModel toModel(BookEntity entity);
 
+    BookEntity toEntity(BookModel model);
+
     List<BookModel> toModelList(List<BookEntity> entities);
 }

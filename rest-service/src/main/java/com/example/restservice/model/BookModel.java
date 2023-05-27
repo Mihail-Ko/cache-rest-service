@@ -6,13 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BookModel {
-
-    private Long id;
-
+    private long id;
     private String name;
-
     private String author;
-
     private String year;
-
 }
