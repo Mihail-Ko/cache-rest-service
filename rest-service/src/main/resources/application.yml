@@ -7,10 +7,10 @@ spring:
   application:
     name: service
 
-  #  sql:
-  #    init:
-  #      mode: always
-  #      data-locations: classpath:database/data.sql
+#  sql:
+#    init:
+#      mode: always
+#      data-locations: classpath:database/data.sql
 
   jpa:
     defer-datasource-initialization: true
@@ -27,7 +27,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8081/eureka
   instance:
-    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    instance-id: ${spring.application.name}:${random.value}
 
 server:
   port: 0
@@ -42,4 +42,4 @@ delay:
   getAll: 3000
   delete: 2000
   update: 2000
-  add: 1000
+  add: 100
