@@ -26,7 +26,7 @@
 </pre>
 #### Начальное заполнение БД
 Для загрузки в БД начальных значений можно использовать параметры в
-[application.yml](https://github.com/Mihail-Ko/cache-rest-service/rest-service\src\main\resources\application.yml), после чего их необходимо "деактивировать", чтобы избежать ошибок БД.
+[application.yml](rest-service\src\main\resources\application.yml), после чего их необходимо "деактивировать", чтобы избежать ошибок БД.
 ```yaml
 spring:
   sql:
@@ -34,19 +34,19 @@ spring:
       mode: always
       data-locations: classpath:database/data.sql
 ```
-Файл для заполения БД: [database\data.sql](https://github.com/Mihail-Ko/cache-rest-service/rest-service\src\main\resources\database\data.sql)
+Файл для заполения БД: [database\data.sql](rest-service\src\main\resources\database\data.sql)
 
 ### Swagger интерфейс
-http://localhost:8080/swagger-ui/index.html
+<a>localhost:8080/swagger-ui/index.html</a>
 <p align=center>
     <img width= 80% src=https://github.com/Mihail-Ko/cache-rest-service/assets/98303471/fbf7ab1c-add9-4972-bfca-7f874fd4039d alt="Swagger"/>
 </p>
 
 ### Микросервисы и горизонтальное масштабирование
 - #### api-gateway
-Шлюз между пользователем и запущенными сервисами (модуль rest-service): [localhost:8080](http://localhost:8080)
+Шлюз между пользователем и запущенными сервисами (модуль rest-service): <a>localhost:8080</a>
 - #### discovery-service
-Панель Eureka-сервера: [localhost:8081](http://localhost:8081)
+Панель Eureka-сервера: <a>localhost:8081</a>
 - #### rest-service
 Для реализации горизонтального масштабирования необходимо запустить несколько экземпляров.
 <p align=center>
@@ -59,12 +59,12 @@ http://localhost:8080/swagger-ui/index.html
 <p align=center> Панель Spring Eureka </p>
 
 ### Обработка исключений
-Реализована централизованная обработка исключений классом [DefaultAdvice](https://github.com/Mihail-Ko/cache-rest-service/rest-service/src/main/java/com/example/restservice/exception/DefaultAdvice.java)
+Реализована централизованная обработка исключений классом [DefaultAdvice](rest-service/src/main/java/com/example/restservice/exception/DefaultAdvice.java)
 
 ### Эмуляция ресурсоёмкости
 Настраиваемые задержки в методах формирования данных для демонстрации быстродействия получения данных из кэша.
 
-[application.yml](https://github.com/Mihail-Ko/cache-rest-service/rest-service\src\main\resources\application.yml)
+[application.yml](rest-service\src\main\resources\application.yml)
 ```yaml
 delay:
   getOne: 2000
@@ -74,7 +74,7 @@ delay:
   add: 100
   ```
 
-[CustomBookRepositoryImpl.java](https://github.com/Mihail-Ko/cache-rest-service/rest-service\src\main\java\com\example\restservice\repository\CustomBookRepositoryImpl.java)
+[CustomBookRepositoryImpl.java](rest-service\src\main\java\com\example\restservice\repository\CustomBookRepositoryImpl.java)
 ```java
     private void delay(int delayTime) {
         try {
