@@ -26,14 +26,14 @@ public class BookController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить страницу списка книг")
-    private List<BookModel> getBooks(@RequestParam int page) {
+    protected List<BookModel> getBooks(@RequestParam int page) {
         return bookService.getAll(page);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить книгу по id")
-    private BookModel getOneBook(@PathVariable long id) {
+    protected BookModel getOneBook(@PathVariable long id) {
         return bookService.getOne(id);
     }
 
@@ -47,7 +47,7 @@ public class BookController {
     @PutMapping()
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Обновить книгу")
-    private BookModel updateBook(@RequestBody BookModel book) {
+    protected BookModel updateBook(@RequestBody BookModel book) {
         return bookService.update(book);
     }
 }

@@ -45,6 +45,7 @@ public class CustomBookRepositoryImpl implements CustomBookRepository {
     @Override
     public void deleteById(long id) {
         delay(delayDelete);
+        bookRepository.deleteById(id);
     }
 
     private void delay(int delayTime) {
