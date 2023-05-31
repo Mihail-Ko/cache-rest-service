@@ -16,6 +16,13 @@ public class BookController {
 
     private final BookService bookService;
 
+    @PostMapping("/reset")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Invalidate cache")
+    protected void resetCache() {
+        bookService.clearCache();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Добавить книгу")

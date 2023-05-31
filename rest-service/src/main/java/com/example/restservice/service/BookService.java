@@ -75,7 +75,10 @@ public class BookService {
         );
     }
 
-    @CacheEvict(allEntries = true)
+    @Caching(evict = {
+        @CacheEvict(value = cacheNameBook, allEntries = true),
+        @CacheEvict(cacheNames = cacheNamePage, allEntries = true)
+    })
     public void clearCache() {
     }
 
