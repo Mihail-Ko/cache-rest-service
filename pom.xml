@@ -28,6 +28,7 @@
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <spring-cloud.version>2022.0.2</spring-cloud.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.1.0</springdoc-openapi-starter-webmvc-ui.version>
+        <hazelcast-spring.version>5.2.3</hazelcast-spring.version>
     </properties>
 
     <dependencyManagement>

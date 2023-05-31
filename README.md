@@ -1,7 +1,6 @@
 # cache-rest-service
-Сервис кеширования для горизонтально масштабируемого HTTP REST-сервиса
-
-Система для учёта книг
+- Сервис кеширования для горизонтально масштабируемого HTTP REST-сервиса
+- Система для учёта книг
 
 ### Особенности и технологии:
 - JDK 17
@@ -12,6 +11,7 @@
 - Микросервисы Spring Cloud
 - Basic-авторизация Spring Security
 - OpenAPI 3 и Swagger ui
+- Кэш Hazelcast
 - Вспомогательные библиотеки:
   - Lombok
   - MapStruct
@@ -84,3 +84,9 @@ delay:
         }
     }
 ```
+### Кэширование
+В [hazelcast.yml](rest-service/src/main/resources/hazelcast.yml) включена синхронизация и установлено время жизни кэша.
+<p align=center>
+    <img src=https://github.com/Mihail-Ko/cache-rest-service/assets/98303471/27e8c775-c69e-44ee-b5f9-0bc711f54132 alt="Hazelcast network"/>
+</p>
+<p align=center> Hazelcast синхронизация </p>

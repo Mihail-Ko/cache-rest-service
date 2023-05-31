@@ -4,6 +4,10 @@ import com.example.restservice.mapper.BookMapper;
 import com.example.restservice.model.BookModel;
 import com.example.restservice.repository.CustomBookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +20,10 @@ public class BookService {
 
     private final CustomBookRepository bookRepository;
     private final BookMapper mapper;
+    private final String cacheNameBook = "book";
+    private final String cacheNamePage = "page";
 
+    @CacheEvict(cacheNames = cacheNamePage, allEntries = true)
     public BookModel addBook(BookModel book) {
         return mapper.toModel(
             bookRepository.save(
@@ -25,6 +32,7 @@ public class BookService {
         );
     }
 
+    @Cacheable(value = cacheNamePage, key = "#pageN")
     public List<BookModel> getAll(int pageN) {
         return mapper.toModelList(
             bookRepository.findAll(
@@ -34,6 +42,7 @@ public class BookService {
         );
     }
 
+    @Cacheable(value = cacheNameBook, key = "#id")
     public BookModel getOne(long id) {
         return mapper.toModel(
             bookRepository.findById(id)
@@ -41,21 +50,33 @@ public class BookService {
         );
     }
 
+    @Caching(evict = {
+        @CacheEvict(value = cacheNameBook, key = "#id"),
+        @CacheEvict(cacheNames = cacheNamePage, allEntries = true)
+    })
     public long delete(long id) {
         checkElementExist(id);
         bookRepository.deleteById(id);
         return id;
     }
 
-    public BookModel update(BookModel updatedBook) {
+    @Caching(
+        put = @CachePut(value = cacheNameBook, key = "#book.id"),
+        evict = @CacheEvict(cacheNames = cacheNamePage, allEntries = true)
+    )
+    public BookModel update(BookModel book) {
         checkElementExist(
-            updatedBook.getId() // NoSuchElementException
+            book.getId() // NoSuchElementException
         );
         return mapper.toModel(
             bookRepository.save(
-                mapper.toEntity(updatedBook)
+                mapper.toEntity(book)
             )
         );
+    }
+
+    @CacheEvict(allEntries = true)
+    public void clearCache() {
     }
 
     private void checkElementExist(long id) {
