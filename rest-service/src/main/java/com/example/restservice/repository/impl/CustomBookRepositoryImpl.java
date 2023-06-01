@@ -1,6 +1,8 @@
-package com.example.restservice.repository;
+package com.example.restservice.repository.impl;
 
 import com.example.restservice.entity.BookEntity;
+import com.example.restservice.repository.BookRepository;
+import com.example.restservice.repository.CustomBookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;

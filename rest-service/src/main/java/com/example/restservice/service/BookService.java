@@ -27,33 +27,27 @@ public class BookService {
     public BookModel addBook(BookModel book) {
         return mapper.toModel(
             bookRepository.save(
-                mapper.toEntity(book)
-            )
-        );
+                mapper.toEntity(book)));
     }
 
     @Cacheable(value = cacheNamePage, key = "#pageN")
     public List<BookModel> getAll(int pageN) {
         return mapper.toModelList(
             bookRepository.findAll(
-                    PageRequest.of(pageN - 1, 10)
-                )
-                .getContent()
-        );
+                    PageRequest.of(pageN - 1, 10))
+                .getContent());
     }
 
     @Cacheable(value = cacheNameBook, key = "#id")
     public BookModel getOne(long id) {
         return mapper.toModel(
             bookRepository.findById(id)
-                .orElseThrow(NoSuchElementException::new)
-        );
+                .orElseThrow(NoSuchElementException::new));
     }
 
     @Caching(evict = {
         @CacheEvict(value = cacheNameBook, key = "#id"),
-        @CacheEvict(cacheNames = cacheNamePage, allEntries = true)
-    })
+        @CacheEvict(cacheNames = cacheNamePage, allEntries = true)})
     public long delete(long id) {
         checkElementExist(id);
         bookRepository.deleteById(id);
@@ -62,23 +56,18 @@ public class BookService {
 
     @Caching(
         put = @CachePut(value = cacheNameBook, key = "#book.id"),
-        evict = @CacheEvict(cacheNames = cacheNamePage, allEntries = true)
-    )
+        evict = @CacheEvict(cacheNames = cacheNamePage, allEntries = true))
     public BookModel update(BookModel book) {
         checkElementExist(
-            book.getId() // NoSuchElementException
-        );
+            book.getId());
         return mapper.toModel(
             bookRepository.save(
-                mapper.toEntity(book)
-            )
-        );
+                mapper.toEntity(book)));
     }
 
     @Caching(evict = {
         @CacheEvict(value = cacheNameBook, allEntries = true),
-        @CacheEvict(cacheNames = cacheNamePage, allEntries = true)
-    })
+        @CacheEvict(cacheNames = cacheNamePage, allEntries = true)})
     public void clearCache() {
     }
 

@@ -17,14 +17,11 @@ public class OpenApiConfiguration {
         Server server = new Server();
         server.setUrl("");
         return new OpenAPI()
-            .servers(
-                List.of(server)
-            )
+            .servers(List.of(server))
             .info(
                 new Info()
                     .title("Api для учёта книг")
                     .description("Сервис кеширования для горизонтально масштабируемого HTTP-сервиса")
-                    .version("1.0")
-            );
+                    .version("1.0"));
     }
 }

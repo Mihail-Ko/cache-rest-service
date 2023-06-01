@@ -26,8 +26,7 @@ public class SecurityConfiguration {
             .httpBasic(withDefaults())
             .csrf()
             .csrfTokenRepository(
-                CookieCsrfTokenRepository.withHttpOnlyFalse()
-            )
+                CookieCsrfTokenRepository.withHttpOnlyFalse())
             .csrfTokenRequestHandler(requestHandler)
             .and()
             .build();
