@@ -1,7 +1,7 @@
 package com.example.restservice.controller;
 
 import com.example.restservice.model.BookModel;
-import com.example.restservice.service.BookService;
+import com.example.restservice.service.wrapper.BookServiceWrapper;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,14 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookController {
 
-    private final BookService bookService;
-
-    @PostMapping("/reset")
-    @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Invalidate cache")
-    protected void resetCache() {
-        bookService.clearCache();
-    }
+    private final BookServiceWrapper bookService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

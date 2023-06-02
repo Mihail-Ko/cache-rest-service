@@ -62,7 +62,7 @@ http://localhost:8080/swagger-ui/index.html
 Реализована централизованная обработка исключений классом [DefaultAdvice](rest-service/src/main/java/com/example/restservice/exception/DefaultAdvice.java)
 
 ### Эмуляция ресурсоёмкости
-Настраиваемые задержки в методах формирования данных для демонстрации быстродействия получения данных из кэша.
+Настраиваемые задержки в для демонстрации быстродействия получения данных из кэша.
 
 [application.yml](rest-service/src/main/resources/application.yml)
 ```yaml
@@ -74,7 +74,7 @@ delay:
   add: 100
   ```
 
-[CustomBookRepositoryImpl.java](rest-service/src/main/java/com/example/restservice/repository/CustomBookRepositoryImpl.java)
+[CustomBookRepository.java](rest-service/src/main/java/com/example/restservice/repository/CustomBookRepository.java)
 ```java
     private void delay(int delayTime) {
         try {

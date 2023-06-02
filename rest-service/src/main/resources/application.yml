@@ -49,4 +49,4 @@ delay:
   getAll: 3000
   delete: 2000
   update: 2000
-  add: 100
+  insert: 500

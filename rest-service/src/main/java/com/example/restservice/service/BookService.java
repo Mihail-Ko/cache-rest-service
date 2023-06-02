@@ -20,13 +20,13 @@ public class BookService {
 
     private final CustomBookRepository bookRepository;
     private final BookMapper mapper;
-    private final String cacheNameBook = "book";
-    private final String cacheNamePage = "page";
+    private final String cacheNameBook = "books";
+    private final String cacheNamePage = "pages";
 
     @CacheEvict(cacheNames = cacheNamePage, allEntries = true)
     public BookModel addBook(BookModel book) {
         return mapper.toModel(
-            bookRepository.save(
+            bookRepository.insert(
                 mapper.toEntity(book)));
     }
 
@@ -61,14 +61,8 @@ public class BookService {
         checkElementExist(
             book.getId());
         return mapper.toModel(
-            bookRepository.save(
+            bookRepository.update(
                 mapper.toEntity(book)));
-    }
-
-    @Caching(evict = {
-        @CacheEvict(value = cacheNameBook, allEntries = true),
-        @CacheEvict(cacheNames = cacheNamePage, allEntries = true)})
-    public void clearCache() {
     }
 
     private void checkElementExist(long id) {
