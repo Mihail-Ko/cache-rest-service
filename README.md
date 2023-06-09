@@ -37,14 +37,14 @@ spring:
 Файл для заполения БД: [database/data.sql](rest-service/src/main/resources/database/data.sql)
 
 ### Swagger интерфейс
-http://localhost:8080/swagger-ui/index.html
+http://127.0.0.2/swagger-ui/index.html
 <p align=center>
     <img width= 80% src=https://github.com/Mihail-Ko/cache-rest-service/assets/98303471/fbf7ab1c-add9-4972-bfca-7f874fd4039d alt="Swagger"/>
 </p>
 
 ### Микросервисы и горизонтальное масштабирование
 - #### api-gateway
-Шлюз между пользователем и запущенными сервисами (модуль rest-service): [localhost:8080](http://localhost:8080)
+Прокси между пользователем и запущенными сервисами: http://127.0.0.2/
 - #### discovery-service
 Панель Eureka-сервера: [localhost:8081](http://localhost:8081)
 - #### rest-service
@@ -67,11 +67,11 @@ http://localhost:8080/swagger-ui/index.html
 [application.yml](rest-service/src/main/resources/application.yml)
 ```yaml
 delay:
-  getOne: 2000
+  getOne: 1500
   getAll: 3000
-  delete: 2000
-  update: 2000
-  add: 100
+  delete: 1500
+  update: 1500
+  insert: 500
   ```
 
 [CustomBookRepository.java](rest-service/src/main/java/com/example/restservice/repository/CustomBookRepository.java)

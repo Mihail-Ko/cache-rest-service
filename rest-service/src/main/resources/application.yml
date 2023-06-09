@@ -45,8 +45,8 @@ springdoc:
       enabled: true
 
 delay:
-  getOne: 2000
+  getOne: 1500
   getAll: 3000
-  delete: 2000
-  update: 2000
+  delete: 1500
+  update: 1500
   insert: 500

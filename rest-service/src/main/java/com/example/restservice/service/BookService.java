@@ -30,7 +30,7 @@ public class BookService {
                 mapper.toEntity(book)));
     }
 
-    @Cacheable(value = cacheNamePage, key = "#pageN")
+    @Cacheable(value = cacheNamePage, key = "#pageN", sync=true)
     public List<BookModel> getAll(int pageN) {
         return mapper.toModelList(
             bookRepository.findAll(
@@ -38,7 +38,7 @@ public class BookService {
                 .getContent());
     }
 
-    @Cacheable(value = cacheNameBook, key = "#id")
+    @Cacheable(value = cacheNameBook, key = "#id", sync=true)
     public BookModel getOne(long id) {
         return mapper.toModel(
             bookRepository.findById(id)
