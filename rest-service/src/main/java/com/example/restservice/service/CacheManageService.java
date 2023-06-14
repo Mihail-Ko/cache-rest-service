@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 public class CacheManageService {
 
     private final String cacheNameBook = "books";
-    private final String cacheNameUtil = "util";
+    private final String cacheNamePage = "pages";
 
     @Caching(evict = {
         @CacheEvict(value = cacheNameBook, allEntries = true),
-        @CacheEvict(cacheNames = cacheNameUtil, allEntries = true)})
+        @CacheEvict(cacheNames = cacheNamePage, allEntries = true)})
     public void clearCache() {
-        log.info("Сброс кэша");
+        log.info("Сброс кэша книг");
     }
 }
