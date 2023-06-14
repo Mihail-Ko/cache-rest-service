@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class CacheManageService {
 
-    private final String cacheNameBook = "books";
-    private final String cacheNamePage = "pages";
+    private final String cacheName = "books";
+    private final String cacheNameUtil = "util";
 
     @Caching(evict = {
-        @CacheEvict(value = cacheNameBook, allEntries = true),
-        @CacheEvict(cacheNames = cacheNamePage, allEntries = true)})
+        @CacheEvict(value = cacheName, allEntries = true),
+        @CacheEvict(cacheNames = cacheNameUtil, allEntries = true)})
     public void clearCache() {
-        log.info("Сброс кэша книг");
+        log.info("Сброс кэша");
     }
 }

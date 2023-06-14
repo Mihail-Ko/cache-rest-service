@@ -8,6 +8,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.NoSuchElementException;
 
@@ -46,6 +47,15 @@ public class DefaultAdvice {
     public ResponseEntity<String> parameterHandler(MissingServletRequestParameterException parameterExc) {
         log.info(
             String.valueOf(parameterExc));
+        return ResponseEntity
+            .status(HttpStatus.BAD_REQUEST)
+            .body("Ошибка в параметре запроса");
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<String> argumentTypeHandler(MethodArgumentTypeMismatchException argumentTypeExc) {
+        log.info(
+            String.valueOf(argumentTypeExc));
         return ResponseEntity
             .status(HttpStatus.BAD_REQUEST)
             .body("Ошибка в параметре запроса");

@@ -5,9 +5,7 @@
 ### Особенности и технологии:
 - JDK 17
 - Spring Boot
-- Работа с данными: 
-  - PostgreSQL
-  - Spring Data JPA
+- PostgreSQL
 - Микросервисы Spring Cloud
 - Basic-авторизация Spring Security
 - OpenAPI 3 и Swagger ui
@@ -16,6 +14,26 @@
   - Lombok
   - MapStruct
 
+### Сборка и запуск
+```
+mvn clean package
+```
+Eureka-сервер:
+```
+java -jar discovery-service\target\discovery-service-0.0.1-SNAPSHOT.jar
+```
+Масштабируемый REST-сервис:
+```
+java -jar rest-service\target\rest-service-0.0.1-SNAPSHOT.jar
+```
+Gateway:
+```
+java -jar api-gateway\target\api-gateway-0.0.1-SNAPSHOT.jar
+```
+Для запуска другого экземпляра Gateway:
+```
+java -jar api-gateway\target\api-gateway-0.0.1-SNAPSHOT.jar --server.address=127.0.0.3
+```
 ### Данные
 #### Модель данных <i>Book</i>
 <pre>
@@ -46,6 +64,8 @@ http://127.0.0.2/swagger-ui/index.html
 - #### api-gateway
 Прокси между пользователем и запущенными сервисами: http://127.0.0.2/
 - #### discovery-service
+Регистрация микросервисов.
+
 Панель Eureka-сервера: [localhost:8081](http://localhost:8081)
 - #### rest-service
 Для реализации горизонтального масштабирования необходимо запустить несколько экземпляров.
